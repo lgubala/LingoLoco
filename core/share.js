@@ -1,28 +1,27 @@
-/* Buzz Kill - list sharing.
-   Export, import, and merge. Loaded by the options page only: the content
-   script runs in every frame of every page and has no use for any of this. */
+/* Import and export. Loaded by the options page only: the content script runs
+   in every frame of every page and has no use for any of this. */
 (function (root) {
   "use strict";
-
-  var WS = root.WordSwap;
+  var BK = root.BK;
 
   function slug(name) {
-    return String(name).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 24) || WS.newId("l");
+    return String(name).toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-|-$/g, "")
+      .slice(0, 24) || BK.rules.newId("l");
   }
 
   function uniqueListId(settings, name) {
     var base = slug(name);
     var id = base;
     var n = 2;
-    while (WS.getList(settings, id)) id = base + "-" + n++;
+    while (BK.settings.getList(settings, id)) id = base + "-" + n++;
     return id;
   }
 
-  /* ---------- sharing ---------- */
-
   function exportList(list) {
     return {
-      buzzkill: WS.SCHEMA,
+      buzzkill: BK.SCHEMA,
       name: list.name,
       rules: list.rules.map(function (r) {
         return { from: r.from, to: r.to, matchCase: r.matchCase, wholeWord: r.wholeWord };
@@ -44,17 +43,19 @@
       raw = data;
     } else if (data && typeof data === "object") {
       name = typeof data.name === "string" ? data.name : null;
-      raw = Array.isArray(data.rules) ? data.rules : (Array.isArray(data.replacements) ? data.replacements : null);
+      raw = Array.isArray(data.rules) ? data.rules
+        : (Array.isArray(data.replacements) ? data.replacements : null);
     }
 
     if (!raw) return { error: "No rules found in there." };
 
-    var rules = WS.normalizeRules(raw).filter(function (r) { return r.from.trim() !== ""; });
+    var rules = BK.rules.normalizeAll(raw).filter(function (r) { return r.from.trim() !== ""; });
     if (!rules.length) return { error: "No usable rules found in there." };
 
     return { name: name, rules: rules };
   }
 
+  /* Same word already present: keep it and add the replacements it lacks. */
   function mergeRules(existing, incoming) {
     var index = new Map();
     var merged = existing.map(function (r) {
@@ -69,7 +70,7 @@
       var key = rule.from.toLowerCase();
       var hit = index.get(key);
       if (!hit) {
-        var copy = Object.assign({}, rule, { id: WS.newId(), to: rule.to.slice() });
+        var copy = Object.assign({}, rule, { id: BK.rules.newId(), to: rule.to.slice() });
         index.set(key, copy);
         merged.push(copy);
         added++;
@@ -85,11 +86,11 @@
     return { rules: merged, added: added, extended: extended };
   }
 
-  Object.assign(WS, {
+  BK.share = {
     slug: slug,
     uniqueListId: uniqueListId,
     exportList: exportList,
-    parseShared: parseShared,
-    mergeRules: mergeRules
-  });
+    parse: parseShared,
+    merge: mergeRules
+  };
 })(typeof window !== "undefined" ? window : this);

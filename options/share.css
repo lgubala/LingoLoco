@@ -1,0 +1,21 @@
+/* sharing */
+#paste {
+  width: 100%;
+  resize: vertical;
+  padding: 9px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  margin-bottom: 10px;
+}
+
+/* deep link from the popup lands here */
+@keyframes flash {
+  from { box-shadow: 0 0 0 3px var(--pencil-wash); border-color: var(--pencil); }
+  to { box-shadow: 0 0 0 0 transparent; }
+}
+
+.panel.flash { animation: flash 1.6s ease-out; }
