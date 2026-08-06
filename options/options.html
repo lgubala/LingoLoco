@@ -107,18 +107,44 @@
 
                 <section class="panel" id="share">
                   <div class="panel-head"><h2>Import &amp; export</h2></div>
+
+                  <h3 class="sub">Export</h3>
+                  <div class="pick" id="export-pick"></div>
+                  <div class="pick-actions">
+                    <button class="ghost" id="export-all">All</button>
+                    <button class="ghost" id="export-none">None</button>
+                    <span class="tiny muted" id="export-summary"></span>
+                  </div>
                   <div class="row-buttons">
                     <button id="copy">Copy to clipboard</button>
                     <button id="export">Save as file</button>
-                    <button id="import-btn">Open a file</button>
                   </div>
-                  <textarea id="paste" rows="3" placeholder="…or paste someone else's list here" spellcheck="false"></textarea>
+
+                  <hr class="section-divider">
+
+                  <h3 class="sub">Import</h3>
                   <div class="row-buttons">
-                    <button id="paste-merge">Add to <span id="paste-target">this list</span></button>
-                    <button id="paste-new">Add as new list</button>
+                    <button id="import-btn">Open a file</button>
+                    <button id="paste-load">Read pasted text</button>
                   </div>
+                  <textarea id="paste" rows="3" placeholder="…or paste a list here" spellcheck="false"></textarea>
                   <input type="file" id="import" accept="application/json,.json" hidden>
-                  <p class="tiny muted" id="io-note">Exports are plain JSON. Buzz Kill lists work too.</p>
+
+                  <div id="staged" hidden>
+                    <p class="staged-head" id="staged-summary"></p>
+                    <div class="pick" id="staged-pick"></div>
+                    <div class="dest">
+                      <label class="check"><input type="radio" name="dest" value="new" checked> Add as new lists</label>
+                      <label class="check"><input type="radio" name="dest" value="name"> Merge into lists with the same name</label>
+                      <label class="check"><input type="radio" name="dest" value="current"> Merge all into <span id="dest-current">this list</span></label>
+                    </div>
+                    <div class="row-buttons">
+                      <button class="primary" id="staged-apply">Import</button>
+                      <button class="ghost" id="staged-cancel">Cancel</button>
+                    </div>
+                  </div>
+
+                  <p class="tiny muted" id="io-note">Exports are plain JSON. Lists from the old Buzz Kill add-on work too.</p>
                 </section>
 
                 <section class="panel">

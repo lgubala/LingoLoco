@@ -30,7 +30,6 @@
     });
 
     app.el("list-delete").disabled = settings.lists.length < 2;
-    app.el("paste-target").textContent = app.currentList().name;
 
     // With a schedule running, the list you're editing may not be the one
     // pages are using. Say so rather than letting it confuse people.

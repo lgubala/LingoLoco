@@ -1,5 +1,9 @@
 /* Import and export. Loaded by the options page only: the content script runs
-   in every frame of every page and has no use for any of this. */
+   in every frame of every page and has no use for any of this.
+
+   One file can carry one list or all of them. Everything parse() returns looks
+   the same to the caller — an array of { name, rules } — so the import UI never
+   has to care which of the older shapes it was handed. */
 (function (root) {
   "use strict";
   var BK = root.BK;
@@ -19,44 +23,86 @@
     return id;
   }
 
-  function exportList(list) {
+  /* "SFW" imported next to an existing "SFW" becomes "SFW 2". */
+  function uniqueListName(settings, name) {
+    var taken = {};
+    settings.lists.forEach(function (l) { taken[l.name.toLowerCase()] = true; });
+    if (!taken[name.toLowerCase()]) return name;
+    var n = 2;
+    while (taken[(name + " " + n).toLowerCase()]) n++;
+    return name + " " + n;
+  }
+
+  function bareRule(r) {
+    return { from: r.from, to: r.to, matchCase: r.matchCase, wholeWord: r.wholeWord };
+  }
+
+  /* Always a bundle, even for one list: one shape to read back. */
+  function exportLists(lists) {
     return {
       buzzkill: BK.SCHEMA,
-      name: list.name,
-      rules: list.rules.map(function (r) {
-        return { from: r.from, to: r.to, matchCase: r.matchCase, wholeWord: r.wholeWord };
+      exported: new Date().toISOString().slice(0, 10),
+      lists: lists.map(function (list) {
+        return { name: list.name, rules: list.rules.map(bareRule) };
       })
     };
   }
 
-  /* Reads our own export (current or the older "wordswap" key), a bare rule
-     array, or an old Buzz Kill [{ target, replacements: [] }] list. */
-  function parseShared(text) {
+  function cleanRules(raw) {
+    return BK.rules.normalizeAll(raw).filter(function (r) { return r.from.trim() !== ""; });
+  }
+
+  function namedList(name, raw) {
+    var rules = cleanRules(raw);
+    if (!rules.length) return null;
+    return {
+      name: typeof name === "string" && name.trim() ? name.trim() : null,
+      rules: rules
+    };
+  }
+
+  /* Reads, in order:
+       { buzzkill|wordswap, lists: [ { name, rules } ] }   a bundle
+       { name, rules: [...] }                              one named list
+       [ ... ]                                             a bare rule array
+       { SFW: { replacements: [...] }, NSFW: {...} }        an old Buzz Kill dump
+     Rules inside may use { from, to } or { target, replacements }. */
+  function parse(text) {
     var data;
     try { data = JSON.parse(text); }
     catch (e) { return { error: "That isn't valid JSON." }; }
 
-    var name = null;
-    var raw = null;
+    var lists = [];
 
     if (Array.isArray(data)) {
-      raw = data;
+      var bare = namedList(null, data);
+      if (bare) lists.push(bare);
     } else if (data && typeof data === "object") {
-      name = typeof data.name === "string" ? data.name : null;
-      raw = Array.isArray(data.rules) ? data.rules
-        : (Array.isArray(data.replacements) ? data.replacements : null);
+      if (Array.isArray(data.lists)) {
+        data.lists.forEach(function (entry) {
+          if (!entry || typeof entry !== "object") return;
+          var list = namedList(entry.name, entry.rules || entry.replacements);
+          if (list) lists.push(list);
+        });
+      } else if (Array.isArray(data.rules) || Array.isArray(data.replacements)) {
+        var single = namedList(data.name, data.rules || data.replacements);
+        if (single) lists.push(single);
+      } else {
+        Object.keys(data).forEach(function (key) {
+          var value = data[key];
+          if (!value || typeof value !== "object") return;
+          var list = namedList(key, value.replacements || value.rules);
+          if (list) lists.push(list);
+        });
+      }
     }
 
-    if (!raw) return { error: "No rules found in there." };
-
-    var rules = BK.rules.normalizeAll(raw).filter(function (r) { return r.from.trim() !== ""; });
-    if (!rules.length) return { error: "No usable rules found in there." };
-
-    return { name: name, rules: rules };
+    if (!lists.length) return { error: "No usable rules found in there." };
+    return { lists: lists };
   }
 
   /* Same word already present: keep it and add the replacements it lacks. */
-  function mergeRules(existing, incoming) {
+  function merge(existing, incoming) {
     var index = new Map();
     var merged = existing.map(function (r) {
       var copy = Object.assign({}, r, { to: r.to.slice() });
@@ -86,11 +132,22 @@
     return { rules: merged, added: added, extended: extended };
   }
 
+  function findByName(settings, name) {
+    var found = null;
+    if (!name) return null;
+    settings.lists.forEach(function (l) {
+      if (l.name.toLowerCase() === name.toLowerCase()) found = l;
+    });
+    return found;
+  }
+
   BK.share = {
     slug: slug,
     uniqueListId: uniqueListId,
-    exportList: exportList,
-    parse: parseShared,
-    merge: mergeRules
+    uniqueListName: uniqueListName,
+    exportLists: exportLists,
+    parse: parse,
+    merge: merge,
+    findByName: findByName
   };
 })(typeof window !== "undefined" ? window : this);
