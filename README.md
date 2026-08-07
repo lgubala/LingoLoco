@@ -86,15 +86,6 @@ should ship as presets are all welcome. If Lingo Loco has made your browsing
 funnier, [a review on AMO](https://addons.mozilla.org/firefox/addon/buzz-kill/)
 helps other people find it.
 
-## For developers
-
-It's plain JavaScript with no dependencies and no bundler — clone it, run
-`./build.sh`, load `dist/unpacked/manifest.json` in
-`about:debugging#/runtime/this-firefox`, and you're editing it.
-
-`npm test` runs the suites. [CONTRIBUTING.md](CONTRIBUTING.md) has the layout and
-the house style.
-
 ## Credits
 
 Emoji names and search keywords come from
