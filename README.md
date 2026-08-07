@@ -12,7 +12,7 @@ says *hot air*. That's the whole idea.
 ### [➜ Get it for Firefox](https://addons.mozilla.org/firefox/addon/buzz-kill/)
 
 <p align="center">
-  <img src="docs/screenshots/popup.png" alt="The Buzz Kill popup, with a few rules in it" width="460">
+  <img src="docs/screenshots/popup.png" alt="The Buzz Kill popup, with a few rules in it" width="360">
 </p>
 
 ---
@@ -35,7 +35,7 @@ whatever you like in the evening.
 paste it in a chat. A good list is real work, and it's more fun shared.
 
 <p align="center">
-  <img src="docs/screenshots/proof.png" alt="The proof sheet showing words being struck out and replaced" width="620">
+  <img src="docs/screenshots/proof.png" alt="The proof sheet showing words being struck out and replaced" width="720">
 </p>
 
 ---

@@ -9,6 +9,10 @@
     var container = app.el("sites");
     container.textContent = "";
 
+    app.el("sites-state").textContent = settings.disabledSites.length
+      ? settings.disabledSites.length + " skipped"
+      : "none";
+
     if (!settings.disabledSites.length) {
       var empty = document.createElement("p");
       empty.className = "empty tiny";

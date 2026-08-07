@@ -9,6 +9,7 @@
     var id = (location.hash || "").replace("#", "");
     var target = id && document.getElementById(id);
     if (!target) return;
+    if (target.tagName === "DETAILS") target.open = true;
     if (target.scrollIntoView) target.scrollIntoView({ behavior: "smooth", block: "center" });
     target.classList.add("flash");
     setTimeout(function () { target.classList.remove("flash"); }, 1800);

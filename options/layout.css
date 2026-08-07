@@ -49,23 +49,23 @@
   border-radius: 3px;
 }
 
-/* The rules table earns the width — it has seven columns and two text fields
-   per row. The proof sheet rides alongside so edits can be seen landing. */
+/* Two columns, each a simple stack. Panels here vary from 60px to 600px tall,
+   which a grid cannot pack — it aligns rows, so one tall card leaves holes
+   beside every short one. Two flow columns with the content deliberately
+   assigned avoids the problem instead of fighting it. */
 .columns {
   display: grid;
-  grid-template-columns: minmax(0, 1.55fr) minmax(300px, 1fr);
+  grid-template-columns: minmax(0, 1.5fr) minmax(320px, 1fr);
   gap: 22px;
   margin-top: 26px;
   align-items: start;
 }
 
-/* Panels you visit now and then, flowing into whatever width there is. */
-.lower {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+.column {
+  display: flex;
+  flex-direction: column;
   gap: 22px;
-  margin-top: 22px;
-  align-items: start;
+  min-width: 0;
 }
 
 .panel {
@@ -77,7 +77,7 @@
 
 .panel-head {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
   gap: 12px;
   padding-bottom: 12px;
@@ -95,3 +95,50 @@
   .columns { grid-template-columns: minmax(0, 1fr); }
   .lower { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* Collapsible panels ------------------------------------------------------ */
+
+.fold > .panel-head {
+  cursor: pointer;
+  list-style: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: 0;
+  user-select: none;
+}
+
+.fold[open] > .panel-head {
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.fold > .panel-head::-webkit-details-marker { display: none; }
+
+.fold > .panel-head::after {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-right: 1.5px solid var(--ink-faint);
+  border-bottom: 1.5px solid var(--ink-faint);
+  transform: rotate(45deg) translate(-2px, -2px);
+  transition: transform 0.15s ease;
+  flex: none;
+}
+
+.fold[open] > .panel-head::after { transform: rotate(-135deg); }
+.fold > .panel-head:hover::after { border-color: var(--ink); }
+
+.fold-state {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-left: auto;
+  padding-right: 10px;
+}
+
+.fold[open] .fold-state { color: var(--swap); }
+
+.sched-switch { margin-bottom: 14px; }

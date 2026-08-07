@@ -50,6 +50,13 @@
 
     var inside = BK.settings.getList(settings, s.inside);
     var outside = BK.settings.getList(settings, s.outside);
+    // The header says what's happening while the panel is shut.
+    app.el("sched-state").textContent = !s.enabled
+      ? "Off"
+      : (BK.schedule.inWindow(s, new Date())
+        ? (inside ? inside.name : "?") + " live"
+        : (outside ? outside.name : "?") + " live");
+
     app.el("sched-summary").textContent = !s.enabled
       ? "Off. Pages use whichever list you pick above."
       : (BK.schedule.inWindow(s, new Date())
