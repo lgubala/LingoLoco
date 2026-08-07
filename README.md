@@ -83,7 +83,8 @@ replace words on pages it's allowed to read.
 
 [Open an issue](../../issues) — bug reports, feature ideas and lists you think
 should ship as presets are all welcome. If Lingo Loco has made your browsing
-funnier, [a review on AMO](https://addons.mozilla.org/firefox/addon/buzz-kill/)
+funnier, a review on the
+[Chrome Web Store](https://chromewebstore.google.com/detail/lingo-loco/<id>)
 helps other people find it.
 
 ## Credits
