@@ -35,7 +35,7 @@
       app.save();
       app.render("proof");
     });
-    toInput.title = "Comma-separated: each page picks one";
+    toInput.title = "Comma-separated: they take turns down the page";
     toWrap.append(toInput, BK.fields.emojiButton(toInput));
 
     var del = document.createElement("button");

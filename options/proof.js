@@ -52,8 +52,8 @@
   function wire() {
     app.el("specimen").value = SAMPLE;
     app.el("specimen").addEventListener("input", render);
-    // A rule with several replacements settles on one per build; reroll shows
-    // the others without waiting for a page load.
+    // Where each rule starts in its cycle is random per page load; reroll
+    // shifts the starting point so the other orderings can be seen.
     app.el("reroll").addEventListener("click", function () {
       seed++;
       render();

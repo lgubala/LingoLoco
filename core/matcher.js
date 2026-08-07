@@ -28,9 +28,16 @@
     return replacement;
   }
 
-  /* Longest rule first, so "New York City" beats "New York". A rule with
-     several replacements settles on one per build, keeping a page consistent
-     with itself; options.seed makes that choice reproducible. */
+  /* Longest rule first, so "New York City" beats "New York".
+
+     A rule with several replacements cycles through them as the page is walked:
+     the first "quantum" becomes magic, the second sorcery, the third magic
+     again. Picking at random each time would be the obvious approach, but with
+     two variants and three occurrences it lands on the same word throughout
+     about a quarter of the time, which reads like the feature is broken. Taking
+     turns guarantees the variety you asked for. Where each rule starts in its
+     cycle is random per page load, so reloading reshuffles; options.seed pins
+     the starting point for the proof sheet. */
   function compile(rules, options) {
     var lookup = new Map();
     var parts = [];
@@ -42,10 +49,10 @@
         var key = rule.from.toLowerCase();
         if (lookup.has(key)) return;
         var variants = rule.to.length ? rule.to : [""];
-        var pick = options.seed === undefined
+        var start = options.seed === undefined
           ? Math.floor(Math.random() * variants.length)
           : (options.seed + index) % variants.length;
-        lookup.set(key, { rule: rule, to: variants[pick] });
+        lookup.set(key, { rule: rule, variants: variants, start: start, used: 0 });
         var body = escapeRe(rule.from);
         parts.push(rule.wholeWord
           ? "(?<!" + WORDCHAR + ")" + body + "(?!" + WORDCHAR + ")"
@@ -72,8 +79,12 @@
     function swap(match) {
       var hit = lookup.get(match.toLowerCase());
       if (!hit) return match;
-      if (hit.rule.matchCase) return match === hit.rule.from ? hit.to : match;
-      return applyCase(match, hit.to);
+      // A case-sensitive rule that doesn't match leaves the word alone, and
+      // must not consume a turn in the cycle.
+      if (hit.rule.matchCase && match !== hit.rule.from) return match;
+
+      var to = hit.variants[(hit.start + hit.used++) % hit.variants.length];
+      return hit.rule.matchCase ? to : applyCase(match, to);
     }
 
     function replaceIn(text) {

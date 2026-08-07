@@ -6,8 +6,8 @@
   var app = BK.app;
 
   var TIPS = [
-    "Give a word several replacements, comma-separated, and each page picks one: " +
-      "synergy \u2192 hot air, word salad, \uD83D\uDCA8.",
+    "Give a word several replacements, comma-separated, and they take turns as you " +
+      "read: the first synergy becomes hot air, the next word salad, the next \uD83D\uDCA8.",
     "Whole words are matched by default, so a rule for \u201ccat\u201d leaves " +
       "\u201cconcatenate\u201d alone. Untick Whole if you want it inside longer words too.",
     "Longer rules win. With both \u201cthought leader\u201d and \u201cleader\u201d in a list, " +
@@ -29,7 +29,11 @@
       "and switch back after.",
     "The proof sheet runs the same engine the pages do. Paste real text into it to try a " +
       "rule before you let it loose.",
-    "A rule with an empty replacement deletes the word instead of swapping it."
+    "A rule with an empty replacement deletes the word instead of swapping it.",
+    "Reading in the dark? The Theme control at the top follows your system by " +
+      "default, and pins to light or dark if you'd rather it didn't.",
+    "Where a rule starts in its cycle of replacements is reshuffled on every page " +
+      "load, so the same paragraph twice isn't the same joke twice."
   ];
 
   var at = Math.floor(Math.random() * TIPS.length);
