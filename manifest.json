@@ -5,7 +5,7 @@
   "description": "Swap any word on any page for one of your own. Runs entirely in your browser.",
   "browser_specific_settings": {
     "gecko": {
-      "id": "buzzkill@lgubala.github.io",
+      "id": "{ef56685d-82fb-4fc6-85fb-502c8c5dde48}",
       "strict_min_version": "120.0"
     }
   },
