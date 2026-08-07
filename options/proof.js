@@ -5,9 +5,10 @@
   var BK = root.BK;
   var app = BK.app;
 
-  var SAMPLE = "Reporters spent the morning outside the courthouse waiting for a statement, " +
-    "while three cable networks ran the same clip on a loop. By lunchtime the quote had been " +
-    "reprinted everywhere, and the internet had already moved on to arguing about it.";
+  var SAMPLE = "We're incredibly excited to announce a bold new chapter. By leveraging " +
+    "best-in-class technology and a relentless focus on the customer journey, we're doubling " +
+    "down on what matters most and unlocking real value at scale. This isn't just a product. " +
+    "It's a movement.";
 
   var seed = 0;
 

@@ -59,7 +59,7 @@
   cursor: pointer;
 }
 
-.emoji-close:hover { color: var(--pencil); }
+.emoji-close:hover { color: var(--swap); }
 
 .emoji-search {
   width: 100%;
@@ -93,7 +93,7 @@
 }
 
 .emoji-tab:hover { opacity: 0.9; }
-.emoji-tab.on { filter: none; opacity: 1; background: var(--pencil-wash); }
+.emoji-tab.on { filter: none; opacity: 1; background: var(--swap-wash); }
 
 .emoji-grid {
   display: grid;
@@ -115,7 +115,7 @@
   cursor: pointer;
 }
 
-.emoji-cell:hover { background: var(--pencil-wash); }
+.emoji-cell:hover { background: var(--swap-wash); }
 .emoji-cell:focus-visible { outline: 2px solid var(--focus); }
 
 .emoji-section {

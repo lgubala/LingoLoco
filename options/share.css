@@ -27,8 +27,8 @@
   cursor: pointer;
 }
 
-.pick label:hover { background: var(--pencil-wash); }
-.pick input { accent-color: var(--pencil); margin: 0; flex: none; }
+.pick label:hover { background: var(--swap-wash); }
+.pick input { accent-color: var(--swap); margin: 0; flex: none; }
 .pick .name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
 .pick .count {
@@ -43,7 +43,7 @@
   font-size: 10px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--pencil);
+  color: var(--swap);
   flex: none;
 }
 
@@ -75,7 +75,7 @@
   margin: 4px 0 12px;
   padding: 12px;
   background: var(--paper);
-  border: 1px solid var(--pencil);
+  border: 1px solid var(--swap);
   border-radius: 3px;
 }
 

@@ -16,14 +16,16 @@
   <link rel="stylesheet" href="schedule.css">
   <link rel="stylesheet" href="share.css">
   <link rel="stylesheet" href="sites.css">
+  <link rel="stylesheet" href="tips.css">
 </head>
 <body>
   <div class="shell">
         <header class="masthead">
           <div>
             <p class="eyebrow">Buzz Kill</p>
-            <h1>Read the web in your own words.</h1>
-            <p class="muted lede">Every page you open gets quietly copy-edited before you see it. Keep separate lists for separate moods, hand them to a friend as a file, and let the clock decide which one is live.</p>
+            <h1>The whole web is written from the same small dictionary.</h1>
+
+            <p class="muted lede">Headlines, launch posts, product pages: the words arrive pre-chewed, sanded down, and repeated until they mean nothing. Buzz Kill rewrites them into your words, on the way to your eyes. It runs entirely in your browser &mdash; nothing you read is sent anywhere.</p>
           </div>
           <label class="switch head-switch">
             <input type="checkbox" id="master">
@@ -50,7 +52,7 @@
               <p class="tiny muted" id="live-note" hidden></p>
 
               <div class="add-form">
-                <input type="text" id="from" placeholder="word on the page" spellcheck="false" autocomplete="off">
+                <input type="text" id="from" placeholder="word you're sick of" spellcheck="false" autocomplete="off">
                 <span class="arrow">&rarr;</span>
                 <div class="with-emoji">
                   <input type="text" id="to" placeholder="what you'd rather read" spellcheck="false" autocomplete="off">
@@ -64,7 +66,7 @@
 
               <div id="list"></div>
 
-              <p class="note tiny muted">Capitalisation follows the page: <span class="mono">trump</span> becomes <span class="mono">pig</span>, <span class="mono">Trump</span> becomes <span class="mono">Pig</span>, <span class="mono">TRUMP</span> becomes <span class="mono">PIG</span>. Tick <span class="mono">Aa</span> to match only the casing you typed, untick <span class="mono">Whole</span> to match inside longer words. Separate several replacements with commas &mdash; each page picks one at random, so <span class="mono">pig, clown, 🤡</span> keeps things fresh.</p>
+              <p class="note tiny muted">Capitalisation follows the page: <span class="mono">synergy</span> becomes <span class="mono">hot air</span>, <span class="mono">Synergy</span> becomes <span class="mono">Hot air</span>, <span class="mono">SYNERGY</span> becomes <span class="mono">HOT AIR</span>. Tick <span class="mono">Aa</span> to match only the casing you typed, untick <span class="mono">Whole</span> to match inside longer words. Separate several replacements with commas &mdash; each page picks one at random, so <span class="mono">hot air, word salad, 💨</span> keeps things fresh.</p>
             </section>
 
       <div class="side">
@@ -147,6 +149,14 @@
                   <p class="tiny muted" id="io-note">Exports are plain JSON. Lists from the old Buzz Kill add-on work too.</p>
                 </section>
 
+                <section class="panel" id="tips">
+                  <div class="panel-head">
+                    <h2>Tip</h2>
+                    <button class="ghost" id="tip-next" title="Another one">Next</button>
+                  </div>
+                  <p class="tip" id="tip-text"></p>
+                </section>
+
                 <section class="panel">
                   <div class="panel-head"><h2>Sites left alone</h2></div>
                   <div class="add-form site-form">
@@ -180,6 +190,7 @@
   <script src="schedule.js"></script>
   <script src="share.js"></script>
   <script src="sites.js"></script>
+  <script src="tips.js"></script>
   <script src="main.js"></script>
 </body>
 </html>

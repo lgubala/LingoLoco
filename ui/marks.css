@@ -24,18 +24,18 @@
 .mark .from {
   color: var(--ink-soft);
   text-decoration: line-through;
-  text-decoration-color: var(--pencil);
+  text-decoration-color: var(--strike);
   text-decoration-thickness: 2px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.mark .arrow { color: var(--pencil); flex: none; }
+.mark .arrow { color: var(--strike); flex: none; }
 
 .mark .to {
   color: var(--ink);
-  background: var(--pencil-wash);
+  background: var(--swap-wash);
   padding: 1px 5px;
   border-radius: 2px;
   white-space: nowrap;

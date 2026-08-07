@@ -27,14 +27,14 @@ textarea#specimen:focus-visible { outline: 2px solid var(--focus); outline-offse
 .proof del {
   color: var(--ink-faint);
   text-decoration: line-through;
-  text-decoration-color: var(--pencil);
+  text-decoration-color: var(--strike);
   text-decoration-thickness: 2px;
   margin-right: 3px;
 }
 
 .proof ins {
   text-decoration: none;
-  background: var(--pencil-wash);
+  background: var(--swap-wash);
   color: var(--ink);
   padding: 0 4px;
   border-radius: 2px;

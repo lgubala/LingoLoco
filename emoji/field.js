@@ -3,7 +3,7 @@
   "use strict";
   var BK = root.BK;
 
-  /* Inserts at the caret so people can build "pig 🐷" without retyping. */
+  /* Inserts at the caret so people can build "hot air 💨" without retyping. */
   function insertInto(input, char) {
     var start = input.selectionStart;
     var end = input.selectionEnd;

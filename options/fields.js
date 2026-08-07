@@ -43,7 +43,7 @@
     });
   }
 
-  /* "pig, clown, 🤡" -> ["pig", "clown", "🤡"] */
+  /* "hot air, word salad, 💨" -> ["hot air", "word salad", "💨"] */
   function parseVariants(text) {
     var out = text.split(",").map(function (v) { return v.trim(); }).filter(Boolean);
     return out.length ? out : [""];

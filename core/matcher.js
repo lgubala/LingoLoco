@@ -15,7 +15,7 @@
     return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   }
 
-  /* trump -> pig, Trump -> Pig, TRUMP -> PIG. */
+  /* synergy -> hot air, Synergy -> Hot air, SYNERGY -> HOT AIR. */
   function applyCase(source, replacement) {
     if (!replacement) return replacement;
     if (source.length > 1 && source === source.toUpperCase() && source !== source.toLowerCase()) {

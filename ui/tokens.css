@@ -1,16 +1,27 @@
-/* Buzz Kill UI — a copy editor's desk: sage paper, red pencil, struck words. */
+/* Buzz Kill UI.
+
+   Two accents doing one job: rust for the word being taken out, ink-blue for
+   the word you put in its place. Every strike-through on screen is rust, every
+   replacement is blue, in the popup and on the options page alike, so the
+   colour tells you which half of a swap you're looking at before you read it.
+
+   Paper is a warm newsprint grey rather than white: this is a tool for
+   rewriting what you read, and it should feel like the page, not the app. */
 
 :root {
-  --paper: #e7eae2;
-  --card: #f3f5ee;
-  --ink: #171a15;
-  --ink-soft: #5d6458;
-  --ink-faint: #8b9184;
-  --rule: #c8cec0;
-  --pencil: #b0392a;
-  --pencil-wash: rgba(176, 57, 42, 0.1);
-  --green: #3c6a4b;
-  --focus: #2f4f7a;
+  --paper: #e4e2dc;
+  --card: #f2f1ec;
+  --ink: #15171b;
+  --ink-soft: #565a61;
+  --ink-faint: #888d94;
+  --rule: #c6c4bc;
+
+  --swap: #1d4e89;                          /* the word you chose */
+  --swap-wash: rgba(29, 78, 137, 0.12);
+  --strike: #a8412a;                        /* the word it replaced */
+
+  --green: #256b5b;
+  --focus: #1d4e89;
 
   --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
   --sans: ui-sans-serif, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
@@ -19,15 +30,18 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --paper: #161814;
-    --card: #1e211c;
-    --ink: #e6e9df;
-    --ink-soft: #a2a99a;
-    --ink-faint: #767d6e;
-    --rule: #333729;
-    --pencil: #e07a63;
-    --pencil-wash: rgba(224, 122, 99, 0.14);
-    --green: #7fb08d;
-    --focus: #8fb3e0;
+    --paper: #14161a;
+    --card: #1c1f24;
+    --ink: #e7e6e1;
+    --ink-soft: #a0a4ab;
+    --ink-faint: #71767d;
+    --rule: #2f333a;
+
+    --swap: #79a9e8;
+    --swap-wash: rgba(121, 169, 232, 0.16);
+    --strike: #e08a6d;
+
+    --green: #63b39c;
+    --focus: #79a9e8;
   }
 }

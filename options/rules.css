@@ -6,7 +6,7 @@
   gap: 8px;
 }
 
-.add-form .arrow { color: var(--pencil); font-family: var(--mono); }
+.add-form .arrow { color: var(--swap); font-family: var(--mono); }
 .site-form { grid-template-columns: 1fr auto; }
 
 .col-legend,
@@ -28,7 +28,7 @@
 
 .rule { padding: 6px 0; border-bottom: 1px solid var(--rule); }
 .rule:last-child { border-bottom: 0; }
-.rule .arrow { color: var(--pencil); font-family: var(--mono); text-align: center; }
+.rule .arrow { color: var(--swap); font-family: var(--mono); text-align: center; }
 .rule.off input[type="text"] { opacity: 0.45; text-decoration: line-through; }
 .rule .cell { display: flex; justify-content: center; }
 .rule .switch { justify-self: start; }

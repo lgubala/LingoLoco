@@ -49,7 +49,7 @@ button.ghost {
   padding: 4px 6px;
 }
 
-button.ghost:hover { color: var(--pencil); border-color: transparent; }
+button.ghost:hover { color: var(--swap); border-color: transparent; }
 
 label.check {
   display: inline-flex;
@@ -61,7 +61,7 @@ label.check {
   user-select: none;
 }
 
-label.check input { accent-color: var(--pencil); margin: 0; }
+label.check input { accent-color: var(--swap); margin: 0; }
 
 /* toggle switch */
 .switch { display: inline-flex; align-items: center; gap: 9px; cursor: pointer; }

@@ -39,7 +39,7 @@ body { width: 320px; }
   gap: 7px;
 }
 
-.add-fields .arrow { color: var(--pencil); font-family: var(--mono); }
+.add-fields .arrow { color: var(--swap); font-family: var(--mono); }
 
 .list-wrap {
   max-height: 232px;
