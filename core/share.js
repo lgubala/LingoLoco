@@ -65,7 +65,7 @@
        { buzzkill|wordswap, lists: [ { name, rules } ] }   a bundle
        { name, rules: [...] }                              one named list
        [ ... ]                                             a bare rule array
-       { SFW: { replacements: [...] }, NSFW: {...} }        an old Buzz Kill dump
+       { SFW: { replacements: [...] }, NSFW: {...} }        an old Lingo Loco dump
      Rules inside may use { from, to } or { target, replacements }. */
   function parse(text) {
     var data;

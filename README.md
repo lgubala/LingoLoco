@@ -1,9 +1,9 @@
-# Buzz Kill
+# Lingo Loco
 
 **Swap the internet's favourite words for your own.**
 
 The web only really knows about fifty words. Everything is *seamless*, everyone
-is *doubling down*, every announcement *unlocks value at scale*. Buzz Kill
+is *doubling down*, every announcement *unlocks value at scale*. Lingo Loco
 quietly rewrites them on the way to your eyes.
 
 Tell it `synergy → hot air` and every page you visit for the rest of your life
@@ -12,7 +12,7 @@ says *hot air*. That's the whole idea.
 ### [➜ Get it for Firefox](https://addons.mozilla.org/firefox/addon/buzz-kill/)
 
 <p align="center">
-  <img src="docs/screenshots/popup.png" alt="The Buzz Kill popup, with a few rules in it" width="360">
+  <img src="docs/screenshots/popup.png" alt="The Lingo Loco popup, with a few rules in it" width="360">
 </p>
 
 ---
@@ -81,7 +81,7 @@ replace words on pages it's allowed to read.
 ## Something broken? An idea?
 
 [Open an issue](../../issues) — bug reports, feature ideas and lists you think
-should ship as presets are all welcome. If Buzz Kill has made your browsing
+should ship as presets are all welcome. If Lingo Loco has made your browsing
 funnier, [a review on AMO](https://addons.mozilla.org/firefox/addon/buzz-kill/)
 helps other people find it.
 

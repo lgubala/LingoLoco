@@ -11,7 +11,7 @@
   var BK = root.BK;
   var app = BK.app;
 
-  var IDLE_NOTE = "Exports are plain JSON. Lists from the old Buzz Kill add-on work too.";
+  var IDLE_NOTE = "Exports are plain JSON. Lists from the old Lingo Loco add-on work too.";
   var noteTimer = null;
 
   var picked = {};      // list id -> exporting?

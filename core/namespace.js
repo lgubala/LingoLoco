@@ -1,4 +1,4 @@
-/* Buzz Kill - the single global every module hangs off.
+/* Lingo Loco - the single global every module hangs off.
    Loaded first everywhere; every other file adds one property to it. */
 (function (root) {
   "use strict";

@@ -7,7 +7,7 @@
     return (prefix || "r") + Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
   }
 
-  /* Accepts our own shape and the old Buzz Kill add-on's
+  /* Accepts our own shape and the old Lingo Loco add-on's
      { target, replacements: [] }, so imported lists need no conversion. */
   function normalizeRule(raw) {
     if (!raw || typeof raw !== "object") return null;
