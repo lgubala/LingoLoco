@@ -12,7 +12,7 @@ says *hot air*. That's the whole idea.
 ### [➜ Get it for Firefox](https://addons.mozilla.org/firefox/addon/buzz-kill/)
 
 <p align="center">
-  <img src="docs/screenshots/popup.png" alt="The Buzz Kill popup, with a few rules in it" width="360">
+  <img src="docs/screenshots/popup.png" alt="The Buzz Kill popup, with a few rules in it" width="460">
 </p>
 
 ---
