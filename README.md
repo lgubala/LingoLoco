@@ -9,7 +9,7 @@ quietly rewrites them on the way to your eyes.
 Tell it `synergy → hot air` and every page you visit for the rest of your life
 says *hot air*. That's the whole idea.
 
-### [➜ Get it for Firefox](https://addons.mozilla.org/firefox/addon/locolingo/)
+### [➜ Get it for Firefox](https://addons.mozilla.org/firefox/addon/lingo-loco/)
 
 <p align="center">
   <img src="docs/screenshots/popup.png" alt="The Lingo Loco popup, with a few rules in it" width="360">
