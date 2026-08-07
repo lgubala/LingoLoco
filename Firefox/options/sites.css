@@ -1,0 +1,15 @@
+/* skipped-sites list */
+.site-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 7px 0;
+  border-bottom: 1px solid var(--rule);
+  font-family: var(--mono);
+  font-size: 12px;
+}
+
+.site-row:last-child { border-bottom: 0; }
+
+.row-buttons { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }

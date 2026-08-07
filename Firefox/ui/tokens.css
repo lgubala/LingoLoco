@@ -1,0 +1,38 @@
+/* Lingo Loco UI.
+
+   Two accents doing one job: rust for the word being taken out, blue for the
+   word you put in its place. Every strike-through on screen is rust, every
+   replacement is blue, so the colour tells you which half of a swap you're
+   looking at before you read it.
+
+   Each token is written once with light-dark(): the first value is the light
+   theme, the second the dark one, and `color-scheme` decides which applies.
+   That makes theming a one-line switch — the Theme control on the options page
+   just sets `color-scheme` on <html> — instead of two palettes kept in sync by
+   hand. (light-dark() needs Firefox 120, which the manifest requires.) */
+
+:root {
+  color-scheme: light dark;
+
+  --paper:     light-dark(#e4e2dc, #14161a);
+  --card:      light-dark(#f2f1ec, #1c1f24);
+  --ink:       light-dark(#15171b, #e7e6e1);
+  --ink-soft:  light-dark(#565a61, #a0a4ab);
+  --ink-faint: light-dark(#888d94, #71767d);
+  --rule:      light-dark(#c6c4bc, #2f333a);
+
+  --swap:      light-dark(#1d4e89, #79a9e8);                              /* the word you chose */
+  --swap-wash: light-dark(rgba(29, 78, 137, 0.12), rgba(121, 169, 232, 0.16));
+  --strike:    light-dark(#a8412a, #e08a6d);                              /* the word it replaced */
+
+  --green:     light-dark(#256b5b, #63b39c);
+  --focus:     light-dark(#1d4e89, #79a9e8);
+
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+  --sans: ui-sans-serif, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+/* Set by the Theme control; absent means follow the operating system. */
+:root[data-theme="light"] { color-scheme: light; }
+:root[data-theme="dark"] { color-scheme: dark; }

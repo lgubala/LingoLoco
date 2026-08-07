@@ -1,0 +1,144 @@
+/* page frame: masthead, two columns, panels */
+.shell {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 40px 28px 64px;
+}
+
+.masthead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 40px;
+  padding-bottom: 22px;
+  border-bottom: 2px solid var(--ink);
+}
+
+.pitch { max-width: 62ch; }
+.masthead h1 { font-size: 34px; margin: 4px 0 8px; max-width: 24ch; }
+.lede { max-width: 60ch; font-size: 13px; }
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 14px;
+  flex: none;
+  padding-top: 6px;
+}
+
+.head-switch { gap: 10px; }
+
+.switch-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.theme-picker { display: flex; align-items: center; gap: 8px; }
+
+.theme-picker select {
+  font-family: var(--mono);
+  font-size: 11px;
+  padding: 4px 6px;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+}
+
+/* Two columns, each a simple stack. Panels here vary from 60px to 600px tall,
+   which a grid cannot pack — it aligns rows, so one tall card leaves holes
+   beside every short one. Two flow columns with the content deliberately
+   assigned avoids the problem instead of fighting it. */
+.columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(320px, 1fr);
+  gap: 22px;
+  margin-top: 26px;
+  align-items: start;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  min-width: 0;
+}
+
+.panel {
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 18px 20px 20px;
+}
+
+.panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 12px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.foot-note { margin-top: 26px; text-align: center; }
+
+@media (max-width: 860px) {
+  .shell { padding: 28px 18px 48px; }
+  .masthead { flex-direction: column; gap: 16px; }
+  .masthead h1 { font-size: 27px; }
+  .controls { flex-direction: row; align-items: center; gap: 20px; }
+  .columns { grid-template-columns: minmax(0, 1fr); }
+  .lower { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Collapsible panels ------------------------------------------------------ */
+
+.fold > .panel-head {
+  cursor: pointer;
+  list-style: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: 0;
+  user-select: none;
+}
+
+.fold[open] > .panel-head {
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.fold > .panel-head::-webkit-details-marker { display: none; }
+
+.fold > .panel-head::after {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-right: 1.5px solid var(--ink-faint);
+  border-bottom: 1.5px solid var(--ink-faint);
+  transform: rotate(45deg) translate(-2px, -2px);
+  transition: transform 0.15s ease;
+  flex: none;
+}
+
+.fold[open] > .panel-head::after { transform: rotate(-135deg); }
+.fold > .panel-head:hover::after { border-color: var(--ink); }
+
+.fold-state {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-left: auto;
+  padding-right: 10px;
+}
+
+.fold[open] .fold-state { color: var(--swap); }
+
+.sched-switch { margin-bottom: 14px; }

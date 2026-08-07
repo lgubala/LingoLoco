@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Lingo Loco</title>
+  <link rel="stylesheet" href="../ui/tokens.css">
+  <link rel="stylesheet" href="../ui/base.css">
+  <link rel="stylesheet" href="../ui/controls.css">
+  <link rel="stylesheet" href="../ui/marks.css">
+  <link rel="stylesheet" href="../ui/lists.css">
+  <link rel="stylesheet" href="../ui/emoji.css">
+  <link rel="stylesheet" href="layout.css">
+  <link rel="stylesheet" href="lists.css">
+  <link rel="stylesheet" href="rules.css">
+  <link rel="stylesheet" href="proof.css">
+  <link rel="stylesheet" href="schedule.css">
+  <link rel="stylesheet" href="share.css">
+  <link rel="stylesheet" href="sites.css">
+  <link rel="stylesheet" href="tips.css">
+</head>
+<body>
+  <div class="shell">
+        <header class="masthead">
+          <div class="pitch">
+            <p class="eyebrow">Lingo Loco</p>
+            <h1>The internet only knows about fifty words.</h1>
+            <p class="muted lede">Swap the ones you're sick of for ones you like better. It happens in your browser on the way to your eyes, so nothing you read goes anywhere.</p>
+          </div>
+
+          <div class="controls">
+            <label class="switch head-switch">
+              <input type="checkbox" id="master">
+              <span class="track"></span>
+              <span class="switch-label" id="master-label">Replacing</span>
+            </label>
+
+            <label class="theme-picker">
+              <span class="switch-label">Theme</span>
+              <select id="theme">
+                <option value="system">System</option>
+                <option value="light">Light</option>
+                <option value="dark">Dark</option>
+              </select>
+            </label>
+          </div>
+        </header>
+
+    <main class="columns">
+      <!-- Left: the thing you came here to do. Rules grows with your list, and
+           the tip below it keeps the column from ending in dead space. -->
+      <div class="column">
+        <section class="panel">
+          <div class="panel-head">
+            <h2>Rules</h2>
+            <span class="eyebrow" id="rule-count"></span>
+          </div>
+
+          <div class="list-bar">
+            <div class="tabs" id="list-tabs"></div>
+            <div class="list-actions">
+              <button class="ghost" id="list-new">New list</button>
+              <button class="ghost" id="list-rename">Rename</button>
+              <button class="ghost" id="list-delete">Delete</button>
+            </div>
+          </div>
+          <p class="tiny muted" id="live-note" hidden></p>
+
+          <div class="add-form">
+            <input type="text" id="from" placeholder="word you're sick of" spellcheck="false" autocomplete="off">
+            <span class="arrow">&rarr;</span>
+            <div class="with-emoji">
+              <input type="text" id="to" placeholder="what you'd rather read" spellcheck="false" autocomplete="off">
+            </div>
+            <button class="primary" id="add">Add</button>
+          </div>
+
+          <div class="col-legend">
+            <span></span><span>Find</span><span></span><span>Replace with</span><span>Aa</span><span>Whole</span><span></span>
+          </div>
+
+          <div id="list"></div>
+
+          <p class="note tiny muted">Capitalisation follows the page: <span class="mono">synergy</span> becomes <span class="mono">hot air</span>, <span class="mono">Synergy</span> becomes <span class="mono">Hot air</span>, <span class="mono">SYNERGY</span> becomes <span class="mono">HOT AIR</span>. Tick <span class="mono">Aa</span> to match only the casing you typed, untick <span class="mono">Whole</span> to match inside longer words. Separate several replacements with commas and they take turns down the page &mdash; with <span class="mono">hot air, word salad, 💨</span> the first one becomes hot air, the next word salad, and so on.</p>
+        </section>
+
+        <section class="panel" id="tips">
+          <div class="panel-head">
+            <h2>Tip</h2>
+            <button class="ghost" id="tip-next" title="Another one">Next</button>
+          </div>
+          <p class="tip" id="tip-text"></p>
+        </section>
+      </div>
+
+      <!-- Right: the proof sheet, then the settings you touch now and then,
+           folded shut so four panels take four lines instead of a metre. -->
+      <div class="column">
+        <section class="panel">
+          <div class="panel-head">
+            <h2>Proof sheet</h2>
+            <button class="ghost" id="reroll" title="Start the replacements at a different point in the cycle">Reroll</button>
+          </div>
+          <textarea id="specimen" rows="5" spellcheck="false"></textarea>
+          <div class="proof" id="proof"></div>
+        </section>
+
+        <details class="panel fold" id="schedule">
+          <summary class="panel-head">
+            <h2>Switch by the clock</h2>
+            <span class="fold-state" id="sched-state">Off</span>
+          </summary>
+
+          <div class="fold-body">
+            <label class="switch sched-switch">
+              <input type="checkbox" id="sched-on">
+              <span class="track"></span>
+              <span class="switch-label">Switch automatically</span>
+            </label>
+
+            <fieldset class="sched" id="sched-body" disabled>
+              <div class="days" id="sched-days"></div>
+              <div class="sched-row">
+                <span class="tiny muted">From</span>
+                <input type="time" id="sched-from">
+                <span class="tiny muted">to</span>
+                <input type="time" id="sched-to">
+              </div>
+              <div class="sched-row">
+                <span class="tiny muted">Inside those hours</span>
+                <select id="sched-inside"></select>
+              </div>
+              <div class="sched-row">
+                <span class="tiny muted">The rest of the time</span>
+                <select id="sched-outside"></select>
+              </div>
+              <p class="tiny muted" id="sched-summary"></p>
+            </fieldset>
+          </div>
+        </details>
+
+        <details class="panel fold" id="share">
+          <summary class="panel-head">
+            <h2>Import &amp; export</h2>
+            <span class="fold-state">Share a list</span>
+          </summary>
+
+          <div class="fold-body">
+            <h3 class="sub">Export</h3>
+            <div class="pick" id="export-pick"></div>
+            <div class="pick-actions">
+              <button class="ghost" id="export-all">All</button>
+              <button class="ghost" id="export-none">None</button>
+              <span class="tiny muted" id="export-summary"></span>
+            </div>
+            <div class="row-buttons">
+              <button id="copy">Copy to clipboard</button>
+              <button id="export">Save as file</button>
+            </div>
+
+            <hr class="section-divider">
+
+            <h3 class="sub">Import</h3>
+            <div class="row-buttons">
+              <button id="import-btn">Open a file</button>
+              <button id="paste-load">Read pasted text</button>
+            </div>
+            <textarea id="paste" rows="3" placeholder="…or paste a list here" spellcheck="false"></textarea>
+            <input type="file" id="import" accept="application/json,.json" hidden>
+
+            <div id="staged" hidden>
+              <p class="staged-head" id="staged-summary"></p>
+              <div class="pick" id="staged-pick"></div>
+              <div class="dest">
+                <label class="check"><input type="radio" name="dest" value="new" checked> Add as new lists</label>
+                <label class="check"><input type="radio" name="dest" value="name"> Merge into lists with the same name</label>
+                <label class="check"><input type="radio" name="dest" value="current"> Merge all into <span id="dest-current">this list</span></label>
+              </div>
+              <div class="row-buttons">
+                <button class="primary" id="staged-apply">Import</button>
+                <button class="ghost" id="staged-cancel">Cancel</button>
+              </div>
+            </div>
+
+            <p class="tiny muted" id="io-note">Exports are plain JSON. Lists from Buzz Kill for Firefox work too.</p>
+          </div>
+        </details>
+
+        <details class="panel fold" id="sites-panel">
+          <summary class="panel-head">
+            <h2>Sites left alone</h2>
+            <span class="fold-state" id="sites-state"></span>
+          </summary>
+
+          <div class="fold-body">
+            <div class="add-form site-form">
+              <input type="text" id="site-input" placeholder="example.com" spellcheck="false" autocomplete="off">
+              <button id="site-add">Skip site</button>
+            </div>
+            <div id="sites"></div>
+          </div>
+        </details>
+      </div>
+    </main>
+
+    <p class="tiny muted foot-note">Removing or editing a rule takes effect on the next page load &mdash; words already swapped stay swapped until you reload.</p>
+  </div>
+
+  <script src="../core/namespace.js"></script>
+  <script src="../core/theme.js"></script>
+  <script src="../core/rules.js"></script>
+  <script src="../core/settings.js"></script>
+  <script src="../core/schedule.js"></script>
+  <script src="../core/matcher.js"></script>
+  <script src="../core/sites.js"></script>
+  <script src="../core/share.js"></script>
+  <script src="../emoji/dataset.js"></script>
+  <script src="../emoji/search.js"></script>
+  <script src="../emoji/picker.js"></script>
+  <script src="../emoji/field.js"></script>
+  <script src="app.js"></script>
+  <script src="fields.js"></script>
+  <script src="lists.js"></script>
+  <script src="rules.js"></script>
+  <script src="proof.js"></script>
+  <script src="schedule.js"></script>
+  <script src="share.js"></script>
+  <script src="sites.js"></script>
+  <script src="tips.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>

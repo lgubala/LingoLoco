@@ -1,0 +1,10 @@
+/* tips */
+#tips { border-left: 3px solid var(--swap); }
+
+.tip {
+  font-family: var(--serif);
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  min-height: 3.2em;
+}

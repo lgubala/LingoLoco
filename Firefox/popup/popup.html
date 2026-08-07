@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="../ui/tokens.css">
+  <link rel="stylesheet" href="../ui/base.css">
+  <link rel="stylesheet" href="../ui/controls.css">
+  <link rel="stylesheet" href="../ui/marks.css">
+  <link rel="stylesheet" href="../ui/lists.css">
+  <link rel="stylesheet" href="../ui/emoji.css">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <header class="bar">
+      <div>
+        <p class="eyebrow">Lingo Loco</p>
+        <h1 id="status">On</h1>
+      </div>
+      <label class="switch" title="Turn all replacements on or off">
+        <input type="checkbox" id="master">
+        <span class="track"></span>
+      </label>
+    </header>
+
+    <section class="lists">
+      <div class="tabs" id="list-tabs"></div>
+      <p class="tiny muted" id="list-note" hidden></p>
+    </section>
+
+    <section class="site" id="site-row" hidden>
+      <span class="site-name" id="site-name"></span>
+      <label class="switch" title="Leave this site alone">
+        <input type="checkbox" id="site-toggle">
+        <span class="track"></span>
+      </label>
+    </section>
+
+    <section class="add">
+      <div class="add-fields">
+        <input type="text" id="from" placeholder="synergy" spellcheck="false" autocomplete="off">
+        <span class="arrow">&rarr;</span>
+        <div class="with-emoji">
+          <input type="text" id="to" placeholder="hot air, 💨" spellcheck="false" autocomplete="off">
+        </div>
+      </div>
+      <button class="primary" id="add">Add rule</button>
+    </section>
+
+    <section class="list-wrap">
+      <div id="list"></div>
+    </section>
+
+    <footer class="foot">
+      <button class="ghost" id="reload">Reload page</button>
+      <button class="ghost" id="open-schedule">Schedule</button>
+      <button class="ghost" id="open-share">Import / export</button>
+      <button class="ghost" id="open-options">All settings</button>
+    </footer>
+
+  <script src="../core/namespace.js"></script>
+  <script src="../core/theme.js"></script>
+  <script src="../core/rules.js"></script>
+  <script src="../core/settings.js"></script>
+  <script src="../core/schedule.js"></script>
+  <script src="../core/sites.js"></script>
+  <script src="../emoji/dataset.js"></script>
+  <script src="../emoji/search.js"></script>
+  <script src="../emoji/picker.js"></script>
+  <script src="../emoji/field.js"></script>
+  <script src="app.js"></script>
+  <script src="status.js"></script>
+  <script src="lists.js"></script>
+  <script src="site.js"></script>
+  <script src="rules.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>

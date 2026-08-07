@@ -1,0 +1,16 @@
+/* lists */
+.list-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.list-actions { display: flex; gap: 2px; }
+#live-note { margin-bottom: 12px; }
+
+/* emoji-enabled fields */
+.with-emoji { display: flex; gap: 6px; align-items: center; min-width: 0; }
+.with-emoji input[type="text"] { min-width: 0; }

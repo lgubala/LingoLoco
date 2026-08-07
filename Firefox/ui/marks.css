@@ -1,0 +1,62 @@
+/* --- the signature: a rule reads like a proofreader's mark --- */
+
+.rule-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.rule-row:last-child { border-bottom: 0; }
+
+.mark {
+  font-family: var(--mono);
+  font-size: 13px;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.mark .from {
+  color: var(--ink-soft);
+  text-decoration: line-through;
+  text-decoration-color: var(--strike);
+  text-decoration-thickness: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mark .arrow { color: var(--strike); flex: none; }
+
+.mark .to {
+  color: var(--ink);
+  background: var(--swap-wash);
+  padding: 1px 5px;
+  border-radius: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rule-row.off .mark { opacity: 0.4; }
+.rule-row.off .mark .to { background: none; }
+
+.flags {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--ink-faint);
+  flex: none;
+}
+
+.empty {
+  padding: 18px 0;
+  color: var(--ink-faint);
+  font-family: var(--serif);
+  font-style: italic;
+}
