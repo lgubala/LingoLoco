@@ -14,6 +14,7 @@
       schema: BK.SCHEMA,
       enabled: true,
       activeList: "sfw",
+      theme: "system",
       lists: [
         { id: "sfw", name: "SFW", rules: [] },
         { id: "nsfw", name: "NSFW", rules: [] }
@@ -67,6 +68,7 @@
       schema: BK.SCHEMA,
       enabled: raw.enabled !== false,
       activeList: byId[raw.activeList] ? raw.activeList : lists[0].id,
+      theme: BK.theme ? BK.theme.normalize(raw.theme) : "system",
       lists: lists,
       schedule: sched,
       disabledSites: Array.isArray(raw.disabledSites) ? raw.disabledSites.slice() : [],

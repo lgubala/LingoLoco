@@ -36,6 +36,7 @@
 
   Promise.all([BK.settings.load(), currentTab()]).then(function (out) {
     pop.set(out[0]);
+    BK.theme.apply(out[0].theme);
 
     var tab = out[1];
     if (tab) {

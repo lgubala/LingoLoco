@@ -14,6 +14,15 @@
     setTimeout(function () { target.classList.remove("flash"); }, 1800);
   }
 
+  function wireTheme() {
+    var select = app.el("theme");
+    select.value = app.get().theme;
+    select.addEventListener("change", function () {
+      app.get().theme = BK.theme.apply(select.value);
+      app.save(true);
+    });
+  }
+
   function wireMaster() {
     var master = app.el("master");
     master.addEventListener("change", function () {
@@ -25,11 +34,13 @@
 
   BK.settings.load().then(function (settings) {
     app.set(settings);
+    BK.theme.apply(settings.theme);
 
     app.el("master").checked = settings.enabled;
     app.el("master-label").textContent = settings.enabled ? "Replacing" : "Paused";
 
     wireMaster();
+    wireTheme();
     Object.keys(BK.panels).forEach(function (name) { BK.panels[name].wire(); });
 
     app.render();
