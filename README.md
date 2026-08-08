@@ -12,6 +12,8 @@ says *hot air*. That's the whole idea.
 ### [➜ Get it for Firefox](https://addons.mozilla.org/firefox/addon/lingo-loco/)
 ### [➜ Get it for Chrome](https://chromewebstore.google.com/)
 
+[![Licence: MIT](https://img.shields.io/badge/licence-MIT-blue.svg)](LICENSE)
+
 <p align="center">
   <img src="docs/screenshots/popup.png" alt="The Lingo Loco popup, with a few rules in it" width="360">
 </p>
