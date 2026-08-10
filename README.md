@@ -6,7 +6,7 @@ The web only really knows about fifty words. Everything is *seamless*, everyone
 is *doubling down*, every announcement *unlocks value at scale*. Lingo Loco
 quietly rewrites them on the way to your eyes.
 
-Tell it `reserch → googling` and every page you visit for the rest of your life
+Tell it `research → googling` and every page you visit for the rest of your life
 says *googling*. That's the whole idea.
 
 ### [➜ Get it for Firefox](https://addons.mozilla.org/firefox/addon/lingo-loco/)
@@ -26,7 +26,7 @@ says *googling*. That's the whole idea.
 well as `thought leader → blogger`.
 
 **Give a word several replacements** and each page picks one, so the joke keeps
-its legs: `reserch → googling, word salad, 💨`.
+its legs: `research → googling, word salad, 💨`.
 
 **Keep separate lists** — one for work, one for fun, one for that site that
 annoys you — and switch between them in a click.
@@ -53,7 +53,7 @@ shows you a tip each time you open it, so you'll pick the rest up as you go.
 
 A few things worth knowing early:
 
-- **Capitalisation sorts itself out.** One rule handles *reserch*, *Reserch* and
+- **Capitalisation sorts itself out.** One rule handles *research*, *Research* and
   *RESEARCH*.
 - **Whole words by default**, so a rule for `cat` leaves *concatenate* in peace.
 - **Your typing is never touched.** Search boxes, comments and code blocks keep
