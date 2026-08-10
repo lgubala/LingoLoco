@@ -10,7 +10,7 @@ Tell it `synergy → hot air` and every page you visit for the rest of your life
 says *hot air*. That's the whole idea.
 
 ### [➜ Get it for Firefox](https://addons.mozilla.org/firefox/addon/lingo-loco/)
-### [➜ Get it for Chrome](https://chromewebstore.google.com/)
+### [➜ Get it for Chrome](https://chromewebstore.google.com/detail/lingo-loco/nlgblfpnfccdnlcbniaidkijpeajeklh)
 
 [![Licence: MIT](https://img.shields.io/badge/licence-MIT-blue.svg)](LICENSE)
 
