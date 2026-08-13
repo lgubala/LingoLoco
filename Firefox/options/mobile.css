@@ -1,0 +1,126 @@
+/* Phones.
+
+   On Android there is no toolbar popup, so this page is the whole interface —
+   adding a word, switching lists and everything else has to work with a thumb
+   on a 360px screen. Loaded last so it can override the desktop layout.
+
+   The captions beside the Aa and Whole checkboxes are hidden here and shown in
+   the narrow layout below, where the column headers they belong to are gone. */
+
+.cell-label { display: none; }
+
+@media (max-width: 620px) {
+  .shell { padding: 18px 14px 40px; }
+
+  /* Masthead: the pitch is nice, but on a phone the controls matter more. */
+  .masthead { gap: 14px; padding-bottom: 16px; }
+  .masthead h1 { font-size: 25px; max-width: none; }
+  .lede { font-size: 13px; }
+  .controls {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding-top: 0;
+  }
+
+  .columns, .column { gap: 16px; margin-top: 18px; }
+  .panel { padding: 14px 14px 16px; }
+
+  /* Anything tappable gets a finger-sized target. */
+  button,
+  .fold > .panel-head,
+  .pick label { min-height: 44px; }
+
+  button { padding: 10px 14px; }
+  .ghost { padding: 8px 10px; }
+  .panel-head button { min-height: 36px; }
+
+  /* 16px keeps Firefox from zooming the page in when a field takes focus. */
+  input[type="text"],
+  input[type="time"],
+  textarea,
+  select { font-size: 16px; padding: 10px; }
+
+  .tab { padding: 9px 14px; font-size: 12px; }
+
+  .list-bar { gap: 8px; }
+  .list-actions { width: 100%; justify-content: flex-start; }
+
+  /* Add form: one field per line, full-width button. */
+  .add-form { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  .add-form .arrow { display: none; }
+  .add-form .with-emoji { width: 100%; }
+  .site-form { grid-template-columns: minmax(0, 1fr); }
+
+  /* A rule is seven columns wide on a desktop, which is hopeless here. Stack it
+     into three lines instead: the word and its switch, the replacement, then
+     the two options with captions so they still make sense. */
+  .col-legend { display: none; }
+
+  .rule {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-areas:
+      "sw    find   del"
+      "to    to     to"
+      "aa    whole  whole";
+    gap: 10px 10px;
+    padding: 14px 0;
+  }
+
+  .rule .r-sw { grid-area: sw; }
+  .rule .r-find { grid-area: find; }
+  .rule .r-arrow { display: none; }
+  .rule .r-to { grid-area: to; }
+  .rule .r-aa { grid-area: aa; }
+  .rule .r-whole { grid-area: whole; }
+  .rule .r-del { grid-area: del; font-size: 20px; min-width: 40px; }
+
+  .rule .cell { justify-content: flex-start; }
+  .rule .check { gap: 8px; }
+
+  .cell-label {
+    display: inline;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    color: var(--ink-soft);
+  }
+
+  .rule .check input { width: 18px; height: 18px; }
+
+  .note { font-size: 12px; }
+
+  /* Proof sheet */
+  .proof { font-size: 15px; }
+  #specimen { font-size: 14px; }
+
+  /* Schedule: the day buttons stay one row, the rest stack. */
+  .days { gap: 3px; }
+  .day { padding: 10px 0; min-height: 40px; }
+  .sched-row { flex-wrap: wrap; gap: 6px 10px; }
+  .sched-row select { max-width: none; flex: 1; }
+
+  /* Sharing */
+  .row-buttons { gap: 8px; }
+  .row-buttons button { flex: 1 1 auto; }
+  .pick .count { font-size: 12px; }
+  .staged-head { font-size: 14px; }
+
+  .foot-note { font-size: 11px; }
+}
+
+/* Very narrow phones: give the word and its replacement the whole line. */
+@media (max-width: 380px) {
+  .rule {
+    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-areas:
+      "sw    find"
+      "to    to"
+      "aa    del"
+      "whole whole";
+  }
+
+  .rule .r-del { justify-self: end; }
+  .masthead h1 { font-size: 22px; }
+}

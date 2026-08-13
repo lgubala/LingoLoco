@@ -14,7 +14,9 @@
     return input;
   }
 
-  function checkCell(checked, title, onChange) {
+  /* `caption` is shown only on narrow screens, where the column headers above
+     the table are hidden and a bare checkbox would mean nothing. */
+  function checkCell(checked, title, onChange, caption) {
     var cell = document.createElement("span");
     cell.className = "cell";
     var label = document.createElement("label");
@@ -25,6 +27,12 @@
     box.checked = checked;
     box.addEventListener("change", function () { onChange(box.checked); });
     label.appendChild(box);
+    if (caption) {
+      var text = document.createElement("span");
+      text.className = "cell-label";
+      text.textContent = caption;
+      label.appendChild(text);
+    }
     cell.appendChild(label);
     return cell;
   }

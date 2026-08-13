@@ -4,12 +4,42 @@
   var BK = root.BK;
   var app = BK.app;
 
+  function findField(rule) {
+    var input = BK.fields.text(rule.from, "word on the page", function (v) {
+      rule.from = v;
+      app.save();
+      app.render("proof");
+    });
+    input.className = "r-find";
+    return input;
+  }
+
+  function caseCell(rule) {
+    var cell = BK.fields.check(!!rule.matchCase, "Match capitalisation exactly", function (v) {
+      rule.matchCase = v;
+      app.save();
+      app.render("proof");
+    }, "Aa");
+    cell.className = "cell r-aa";
+    return cell;
+  }
+
+  function wholeCell(rule) {
+    var cell = BK.fields.check(rule.wholeWord !== false, "Match whole words only", function (v) {
+      rule.wholeWord = v;
+      app.save();
+      app.render("proof");
+    }, "Whole word");
+    cell.className = "cell r-whole";
+    return cell;
+  }
+
   function ruleRow(list, rule) {
     var row = document.createElement("div");
     row.className = "rule" + (rule.enabled === false ? " off" : "");
 
     var sw = document.createElement("label");
-    sw.className = "switch";
+    sw.className = "switch r-sw";
     sw.title = "Use this rule";
     var swInput = document.createElement("input");
     swInput.type = "checkbox";
@@ -25,11 +55,11 @@
     sw.append(swInput, track);
 
     var arrow = document.createElement("span");
-    arrow.className = "arrow";
+    arrow.className = "arrow r-arrow";
     arrow.textContent = "\u2192";
 
     var toWrap = document.createElement("div");
-    toWrap.className = "with-emoji";
+    toWrap.className = "with-emoji r-to";
     var toInput = BK.fields.text(rule.to.join(", "), "your word, or two", function (v) {
       rule.to = BK.fields.parseVariants(v);
       app.save();
@@ -39,7 +69,7 @@
     toWrap.append(toInput, BK.fields.emojiButton(toInput));
 
     var del = document.createElement("button");
-    del.className = "ghost";
+    del.className = "ghost r-del";
     del.type = "button";
     del.title = "Delete this rule";
     del.textContent = "\u00d7";
@@ -51,23 +81,11 @@
 
     row.append(
       sw,
-      BK.fields.text(rule.from, "word on the page", function (v) {
-        rule.from = v;
-        app.save();
-        app.render("proof");
-      }),
+      findField(rule),
       arrow,
       toWrap,
-      BK.fields.check(!!rule.matchCase, "Match capitalisation exactly", function (v) {
-        rule.matchCase = v;
-        app.save();
-        app.render("proof");
-      }),
-      BK.fields.check(rule.wholeWord !== false, "Match whole words only", function (v) {
-        rule.wholeWord = v;
-        app.save();
-        app.render("proof");
-      }),
+      caseCell(rule),
+      wholeCell(rule),
       del
     );
 
